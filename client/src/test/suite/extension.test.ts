@@ -112,7 +112,7 @@ suite('VsCode GroovyLint Test Suite', () => {
 		// testDocs['tinyGroovy'].doc = await openDocument('tinyGroovy');
 		await waitUntil(() => diagnosticsChanged(testDocs['tinyGroovy'].doc.uri, []), 60000);
 		const docDiagnostics = vscode.languages.getDiagnostics(testDocs['tinyGroovy'].doc.uri);
-
+		console.log(docDiagnostics);
 		assert(docDiagnostics.length >= numberOfDiagnosticsForTinyGroovyLint, `${numberOfDiagnosticsForTinyGroovyLint} GroovyLint diagnostics found after lint (${docDiagnostics.length} returned)`);
 	}).timeout(60000);
 
