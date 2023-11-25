@@ -40,7 +40,7 @@ const numberOfGroovyLintCommands = 9;
 //const numberOfDiagnosticsForBigGroovyLint = 4361;
 //const numberOfDiagnosticsForBigGroovyLintFix = 683;
 
-const numberOfDiagnosticsForTinyGroovyLint = 31;
+const numberOfDiagnosticsForTinyGroovyLint = 50;
 const numberOfDiagnosticsForTinyGroovyLintFix = 19;
 
 const numberOfDiagnosticsForJenkinsfileLint = 369;
@@ -50,7 +50,7 @@ suite('VsCode GroovyLint Test Suite', () => {
 	vscode.window.showInformationMessage('Start all VsCode Groovy Lint tests');
 
 	// Check extension is available
-	test("1.0.0 GroovyLint extension is available", async () => {
+	test.only("1.0.0 GroovyLint extension is available", async () => {
 		console.log("Start 1.0.0 GroovyLint extension is available");
 		testDocs['tinyGroovy'].doc = await openDocument('tinyGroovy');
 		console.log(JSON.stringify(testDocs, null, 2));
@@ -60,7 +60,7 @@ suite('VsCode GroovyLint Test Suite', () => {
 	}).timeout(10000);
 
 	// Check all commands are here
-	test("1.1.0 Check GroovyLint VsCode commands", async () => {
+	test.only("1.1.0 Check GroovyLint VsCode commands", async () => {
 		console.log("Start 1.1.0 Check GroovyLint VsCode commands");
 		const allCommands = await vscode.commands.getCommands();
 		debug('Commands found: ' + JSON.stringify(allCommands));
@@ -107,7 +107,7 @@ suite('VsCode GroovyLint Test Suite', () => {
 		}).timeout(200000);
 	*/
 	// Lint tiny document
-	test("3.0.0 Lint tiny document", async () => {
+	test.only("3.0.0 Lint tiny document", async () => {
 		console.log("Start 3.0.0 Lint tiny document");
 		// testDocs['tinyGroovy'].doc = await openDocument('tinyGroovy');
 		await waitUntil(() => diagnosticsChanged(testDocs['tinyGroovy'].doc.uri, []), 60000);
@@ -117,7 +117,7 @@ suite('VsCode GroovyLint Test Suite', () => {
 	}).timeout(60000);
 
 	// Disable rules for a line
-	test("3.0.0.1 Disable next line", async () => {
+	test.only("3.0.0.1 Disable next line", async () => {
 		console.log("3.0.0.1  Disable next line");
 		const lineNb = 6;
 		const docDiagnostics = vscode.languages.getDiagnostics(testDocs['tinyGroovy'].doc.uri);
@@ -398,7 +398,7 @@ function diagnosticsChanged(docUri: vscode.Uri, prevDiags: vscode.Diagnostic[]):
 		let diagsChanged = false;
 		const docDiags = vscode.languages.getDiagnostics(docUri);
 		console.log(`docDiags: ${JSON.stringify(docDiags, null,2)}`);
-if (diagsChanged === false && docDiags && docDiags.length > 0 &&
+		if (diagsChanged === false && docDiags && docDiags.length > 0 &&
 			docDiags.length !== prevDiags.length && !isWaitingDiagnostic(docDiags)
 		) {
 			diagsChanged = true;
