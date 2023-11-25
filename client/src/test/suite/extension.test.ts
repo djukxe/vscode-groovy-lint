@@ -397,7 +397,8 @@ function diagnosticsChanged(docUri: vscode.Uri, prevDiags: vscode.Diagnostic[]):
 	return new Promise(async (resolve, reject) => {
 		let diagsChanged = false;
 		const docDiags = vscode.languages.getDiagnostics(docUri);
-		if (diagsChanged === false && docDiags && docDiags.length > 0 &&
+		console.log("docDiags:"+docDiags);
+if (diagsChanged === false && docDiags && docDiags.length > 0 &&
 			docDiags.length !== prevDiags.length && !isWaitingDiagnostic(docDiags)
 		) {
 			diagsChanged = true;
