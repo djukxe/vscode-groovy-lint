@@ -50,8 +50,7 @@ async function main() {
 			extensionDevelopmentPath: extensionDevelopmentPath,
 			extensionTestsPath: extensionTestsPath,
 			launchArgs: ['--disable-extensions'],
-			extensionTestsEnv: (process.env["DEBUG"]) ? { "DEBUG": "vscode-groovy-lint,npm-groovy-lint" } : {},
-			platform: 'win32-x64-archive',		
+			extensionTestsEnv: (process.env["DEBUG"]) ? { "DEBUG": "vscode-groovy-lint,npm-groovy-lint" } : {}
 		});
 
 		if (codeCoverage) {
